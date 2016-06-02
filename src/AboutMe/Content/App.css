@@ -1,0 +1,85 @@
+﻿/* Client Web Part styles */
+.clientwebpart-body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+    .clientwebpart-body .clientwebpart-div {
+        margin: 0;
+        padding: 5px;
+        border: 0;
+        position: relative;
+        width: 300px;
+        height: 200px;
+        background-color: #0072C6;
+        color: #FFFFFF;
+        font-size: 14pt;
+    }
+
+/* Place custom styles below */
+body{
+	font-family: Arial;
+	font-size: 13px;
+	margin-top:20px;
+}
+.title{
+	font-size: 40px;
+	font-weight: bold;
+	color: #0072C6;
+}
+.short-overview{
+	font-size: 11px;
+	font-style: italic;
+}
+
+.address{
+	font-size: 14px;
+}
+.topic-header{
+	padding-top: 20px;
+	font-size: 20px;
+	color: #0072C6;
+}
+
+.skill{
+	width: 80%;
+}
+.experience{
+	width: 33%;
+}
+.certificate{
+	width: 80%;
+}
+.project{
+	font-size:14px;
+	font-weight: bold;
+}
+.project-version{
+	font-size:12px;
+	font-style: italic;
+	text-align: left;
+}
+
+@media (min-width: 992px) {
+	.project-version{
+		font-size:12px;
+		font-style: italic;
+		text-align: right;
+	}		
+}
+
+.hrLine{
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+.createSingleList{
+	cursor: pointer;
+}
+.deleteSingleList{
+	cursor: pointer;
+}
+.pointerCursor{
+	cursor: pointer;
+}
