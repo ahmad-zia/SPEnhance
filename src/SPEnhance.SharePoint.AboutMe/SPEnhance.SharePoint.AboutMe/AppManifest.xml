@@ -4,6 +4,9 @@
   <Properties>
     <Title>SPEnhance About Me</Title>
     <StartPage>~appWebUrl/Pages/Default.aspx?{StandardTokens}</StartPage>
+    <SupportedLocales>
+      <SupportedLocale CultureName="en-us" />
+    </SupportedLocales>
   </Properties>
   <AppPrincipal>
     <Internal />
