@@ -133,8 +133,6 @@
     <Content Include="Images\print16x16.png" />
     <Content Include="Images\print32x32.png" />
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\SPEnhanceCustomAction - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\SPEnhanceCustomAction - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -144,7 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Properties\PublishProfiles\SPEnhanceCustomAction - Web Deploy.pubxml.user" />
     <Content Include="Services\AppEventReceiver.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
