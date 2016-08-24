@@ -69,14 +69,14 @@
 						objItem.push(objField);
 				    }
 
-					successCallback(objItem, commaSeperatedFieldInternalNames);
+				    successCallback(objItem, commaSeperatedFieldInternalNames, listName);
 				}
 				
 				function onFailListItems(sender, args) {
 				    if (args != null) {
 				        errorMessage = $.createErrorReason("getListData", args);
 				        $.displayConsoleLog(errorMessage);
-				        failCallback(args.get_message());
+				        failCallback(args.get_message(), listName);
 				    }
 				}
 			}
@@ -85,7 +85,7 @@
 			    if (args != null) {
 			        errorMessage = $.createErrorReason("getListData.onFailFields", args);
 			        $.displayConsoleLog(errorMessage);
-			        failCallback(args.get_message());
+			        failCallback(args.get_message(), listName);
 			    }
 			}
 		

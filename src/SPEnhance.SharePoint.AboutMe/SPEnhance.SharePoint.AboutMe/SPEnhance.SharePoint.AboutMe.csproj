@@ -20,6 +20,10 @@
     <CspkgPartId>{f57b2fd5-b858-4f53-add0-fb42f4bb2b89}</CspkgPartId>
     <SqlPackagePartId>{ac588d15-429c-4f3c-bf5d-1e2967ab2f9b}</SqlPackagePartId>
     <ActiveDeploymentConfiguration>Deploy SharePoint Add-in</ActiveDeploymentConfiguration>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,15 +65,16 @@
       <DependentUpon>SPEnhance.SharePoint.AboutMe.feature</DependentUpon>
     </Content>
     <Content Include="Images\Elements.xml" />
+    <Content Include="Images\ResumeBuilder.png">
+      <OpcRelationship>manifest-icon</OpcRelationship>
+    </Content>
     <Content Include="Pages\Elements.xml" />
     <Content Include="Scripts\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\App.css" />
     <Content Include="Content\Print.css" />
-    <Content Include="Images\AppIcon.png">
-      <OpcRelationship>manifest-icon</OpcRelationship>
-    </Content>
+    <Content Include="Images\AppIcon.png" />
     <Content Include="Pages\Admin\Default.aspx" />
     <Content Include="Pages\Admin\List\Edit.aspx" />
     <Content Include="Pages\Admin\List\New.aspx" />

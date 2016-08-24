@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>About Me</title> 
+		<title>Resume Builder</title> 
 		<meta name="description" content="">
 		<meta http-equiv="default-style" content="text/css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="start" href="Default.aspx" title="About Me" />
+		<link rel="start" href="Default.aspx" title="Resume Builder" />
 		
 		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js"></script>	
@@ -23,6 +23,7 @@
 		<script type="text/javascript" src="../Scripts/Common.js"></script>
 		<script type="text/javascript" src="../Scripts/CSOM.js"></script>
 		<script type="text/javascript" src="../Scripts/Default.js"></script>
+        
 	</head>
 	<body>
 		<!--[if lt IE 8]>
@@ -30,7 +31,7 @@
 		<![endif]-->
 		
 		<div class="container">
-			<div id="divMsg" class="alert alert-danger alert-dismissible msg" role="alert">
+			<div id="divMsg" class="alert alert-danger alert-dismissible msg no-print" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<span id="spanMsg"></span>
 			</div>
@@ -94,7 +95,12 @@
 				<div class="panel-heading">Projects</div>
 				<div id="project" class="panel-body">Loading...</div>
 			</div>
-			<div class="text-right no-print"><a id="viewAdmin">Admin</a> | <a href="#" id="print">Print</a></div>
+			<div class="text-right no-print"><a id="viewAdmin">Admin</a> | <a href="#" id="print">Print</a> | <a class="pointerCursor" id="refresh">Refresh</a></div>
+
+            <div class="no-print">
+                <input type="button" value="Back to SharePoint" id="backToSharePoint" />
+            </div>
 		</div>
+        
 	</body>
 </html>

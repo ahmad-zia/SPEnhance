@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>About Me</title> 
+		<title>Resume Builder</title> 
 		<meta name="description" content="">
 		<meta http-equiv="default-style" content="text/css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="start" href="Default.aspx" title="About Me" />
+		<link rel="start" href="Default.aspx" title="Resume Builder" />
 		
 		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js"></script>	
@@ -34,6 +34,9 @@
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<span id="spanMsg"></span>
 			</div>
+            <div>
+                <p>Use Admin Panel to create the lists and manage the information.</p>
+            </div>
 			<div class="panel panel-default">
 				<div class="panel-heading">Lists</div>
 				<div class="panel-body">
@@ -47,6 +50,11 @@
 			<div class="text-right">
 				<a class="pointerCursor" id="refresh">Refresh</a> | <a id="viewResume">View</a>
 			</div>
+
+            <div>
+                <input type="button" value="Back to SharePoint" id="backToSharePoint" />
+            </div>
 		</div>
+        
 	</body>
 </html>

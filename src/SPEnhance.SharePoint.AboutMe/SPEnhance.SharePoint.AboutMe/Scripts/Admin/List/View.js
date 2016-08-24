@@ -88,7 +88,7 @@
 	    // Re-add event handler for all matching elements
 	    $(".createSingleList").on("click", function() {
 			clearMsg();
-	        createSingleList($(this).attr("data"));
+	        createSingleList($(this).attr("data"), true);
 	    });
 		
 		$(".deleteItem").off(); 
