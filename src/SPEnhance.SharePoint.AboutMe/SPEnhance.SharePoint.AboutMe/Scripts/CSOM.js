@@ -73,7 +73,7 @@
 				}
 				
 				function onFailListItems(sender, args) {
-				    if (args != null) {
+				    if(args != null && typeof args != "undefined") {
 				        errorMessage = $.createErrorReason("getListData", args);
 				        $.displayConsoleLog(errorMessage);
 				        failCallback(args.get_message(), listName);
@@ -82,7 +82,7 @@
 			}
 			
 			function onFailFields(sender, args) {
-			    if (args != null) {
+			    if(args != null && typeof args != "undefined") {
 			        errorMessage = $.createErrorReason("getListData.onFailFields", args);
 			        $.displayConsoleLog(errorMessage);
 			        failCallback(args.get_message(), listName);
@@ -133,10 +133,18 @@
 			}
 			
 			function onFail(sender, args) {
-			    if (args != null) {
-			        errorMessage = $.createErrorReason("createOrUpdateListItem", args);
-			        $.displayConsoleLog(errorMessage);
-			        failCallback(args.get_message());
+			    errorMessage = $.createErrorReason("createOrUpdateListItem", args);
+			    $.displayConsoleLog(errorMessage);
+			    $.displayConsoleLog("siteUrl: " + siteUrl);
+			    $.displayConsoleLog("listName: " + listName);
+			    $.displayConsoleLog("listItemId: " + listItemId);
+			    $.displayConsoleLog("jsonListData:- ");
+			    for (var i = 0 ; i < jsonListData.data.length ; i++)
+			        $.displayConsoleLog(jsonListData.data[i].fieldName + ": " + jsonListData.data[i].fieldValue);
+
+			    if (args != null && typeof args != "undefined" ) {
+			        
+			        failCallback(sender, args);
 			    }
 			}
 			
@@ -179,10 +187,10 @@
 			}
 			
 			function onFail(sender, args) {
-			    if (args != null) {
+			    if(args != null && typeof args != "undefined") {
 			        errorMessage = $.createErrorReason("deleteListData", args);
 			        $.displayConsoleLog(errorMessage);
-			        failCallback(args.get_message());
+			        failCallback(sender, args);
 			    }
 			}
 			
@@ -230,18 +238,18 @@
 				}
 				
 				function onFail(sender, args) {
-				    if (args != null) {
+				    if(args != null && typeof args != "undefined") {
 				        errorMessage = $.createErrorReason("deleteAllListData", args);
 				        $.displayConsoleLog(errorMessage);
-				        failCallback(args.get_message());
+				        failCallback(sender, args);
 				    }
 				}
 			}, 
 			function () {
-			    if (args != null) {
+			    if(args != null && typeof args != "undefined") {
 			        errorMessage = $.createErrorReason("deleteAllListData.GetAllIDs", args);
 			        $.displayConsoleLog(errorMessage);
-			        failCallback(args.get_message());
+			        failCallback(sender, args);
 			    }
 			});
 		}
@@ -272,8 +280,11 @@
 			}
 		}
 		
-		$.createErrorReason = function(functionName, args){
-			return "Error in function " + functionName ;//+ ". " + args.get_message() + " " + args.get_stackTrace();
+		$.createErrorReason = function (functionName, args) {
+		    var str = "Error in function " + functionName;
+            if(args != null || typeof args != "undefined")
+                str += ". " + args.get_message() + " " + args.get_stackTrace();
+            return str;
 		}
 	}
 })();
