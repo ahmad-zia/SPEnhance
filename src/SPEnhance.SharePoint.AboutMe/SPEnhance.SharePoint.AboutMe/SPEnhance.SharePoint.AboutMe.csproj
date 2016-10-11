@@ -61,6 +61,7 @@
       <SharePointProjectItemId>{e3e8004d-9e63-4a0c-a998-15e351196879}</SharePointProjectItemId>
     </None>
     <Content Include="Content\Elements.xml" />
+    <Content Include="Elements.xml" />
     <Content Include="Features\SPEnhance.SharePoint.AboutMe\SPEnhance.SharePoint.AboutMe.Template.xml">
       <DependentUpon>SPEnhance.SharePoint.AboutMe.feature</DependentUpon>
     </Content>
@@ -69,7 +70,11 @@
       <OpcRelationship>manifest-icon</OpcRelationship>
     </Content>
     <Content Include="Pages\Elements.xml" />
+    <Content Include="Readme.txt" />
     <Content Include="Scripts\Elements.xml" />
+    <None Include="SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4d70941a-53ab-4d59-85ad-0e4e4114ee32}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\App.css" />
