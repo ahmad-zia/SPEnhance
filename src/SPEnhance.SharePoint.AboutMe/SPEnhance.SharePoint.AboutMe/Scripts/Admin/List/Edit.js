@@ -1,19 +1,19 @@
 ﻿(function(){
-	var appWebUrl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
 	var listName = decodeURIComponent(getQueryStringParameter("listName"));
 	var listItemId = decodeURIComponent(getQueryStringParameter("listItemId"));
-	var objClient = new SPClient();
+	
 
 	$(document).ready(function () {
 		clearMsg();
-		
+		var objClient = new SPClient();
+		objClient.consoleLog(true);
+
 		$("#spanListName").text(listName);
 		var camlQuery = "<View><Query><Where><Eq><FieldRef Name=\'ID\'/><Value Type=\'Number\'>" + listItemId + "</Value></Eq></Where></Query></View>";
 		objClient.getListData(appWebUrl, listName, "ID,"+getFieldsByListName(listName), camlQuery, callbackListDataSuccess, callbackListDataFail);
 		
 		
 		$("#save").click(function(){
-			var objClient = new SPClient();
 			var objFields = [];
 			var objField = {};
 
@@ -32,7 +32,7 @@
 		});
 		
 		$("#cancel").click(function(){
-			document.location = "View.aspx?SPAppWebUrl="+appWebUrl+"&listName="+listName;
+		    document.location = "View.aspx?SPAppWebUrl="+appWebUrl+"&listName="+listName+"&SPHostUrl="+hostWebUrl;
 		});
 	});
 	
@@ -45,7 +45,7 @@
 	}
 	
 	function callbackSaveSuccess(){
-		document.location = "View.aspx?SPAppWebUrl="+appWebUrl+"&listName="+listName;
+	    document.location = "View.aspx?SPAppWebUrl="+appWebUrl+"&listName="+listName+"&SPHostUrl="+hostWebUrl;
 	}
 	
 	function callbackSaveFail(sender, args){

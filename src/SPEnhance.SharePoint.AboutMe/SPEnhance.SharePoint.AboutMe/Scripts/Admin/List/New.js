@@ -1,15 +1,15 @@
 ﻿(function(){
-	var appWebUrl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
 	var listName = decodeURIComponent(getQueryStringParameter("listName"));
 	$(document).ready(function () {
 		clearMsg();
-		
+		var objClient = new SPClient();
+		objClient.consoleLog(true);
+
 		$("#spanListName").text(listName);
 		createForm(listName);
 		
 		$("#save").click(function(){
-			var objClient = new SPClient();
-			objClient.consoleLog(true);
+			
 			var objFields = [];
 			var objField = {};
 
@@ -26,12 +26,12 @@
 		});
 		
 		$("#cancel").click(function(){
-			document.location = "View.aspx?SPAppWebUrl="+appWebUrl+"&listName="+listName;
+		    document.location = "View.aspx?SPAppWebUrl="+appWebUrl+"&listName="+listName+"&SPHostUrl="+hostWebUrl;
 		});
 	});
 	
 	function callbackSaveSuccess(){
-		document.location = "View.aspx?SPAppWebUrl="+appWebUrl+"&listName="+listName;
+	    document.location = "View.aspx?SPAppWebUrl=" + appWebUrl + "&listName=" + listName + "&SPHostUrl=" + hostWebUrl;
 	}
 	
 	function callbackSaveFail(sender, args){

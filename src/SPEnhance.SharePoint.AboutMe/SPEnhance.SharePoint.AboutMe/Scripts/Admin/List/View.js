@@ -1,16 +1,16 @@
 ﻿(function(){
-	var appWebUrl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
 	var listName = decodeURIComponent(getQueryStringParameter("listName"));
 	var objClient = new SPClient();
 	$(document).ready(function () {
-		clearMsg();
-		
+	    clearMsg();
+	    objClient.consoleLog(true);
+
 		$("#spanListName").text(listName);
 		
 		objClient.getListData(appWebUrl, listName, "ID,"+getFieldsByListName(listName), "", callbackListSuccess, callbackFail);
 		
 		$("#new").click(function(){
-			document.location = "new.aspx?SPAppWebUrl="+appWebUrl+"&listName="+listName;
+		    document.location = "new.aspx?SPAppWebUrl="+appWebUrl+"&listName="+listName+"&SPHostUrl="+hostWebUrl;
 		});
 		
 		$("#deleteAllListData").click(function(){
@@ -48,7 +48,7 @@
 					html += "</td>";
 				}
 				html += "<td>";
-				html += "<a href='" + appWebUrl + "/Pages/Admin/List/Edit.aspx?SPAppWebUrl=" + appWebUrl + "&listName=" + listName + "&listItemId=" + objfieldsData[i]["ID"] + "'>Edit</a> | ";
+				html += "<a href='" + appWebUrl + "/Pages/Admin/List/Edit.aspx?SPAppWebUrl=" + appWebUrl + "&listName=" + listName + "&listItemId=" + objfieldsData[i]["ID"] + "&SPHostUrl="+hostWebUrl+"'>Edit</a> | ";
 				html += "<a class='deleteItem pointerCursor' data='" + objfieldsData[i]["ID"] + "'>Delete</a>";
 				html += "</td>";
 				html += "</tr>";	

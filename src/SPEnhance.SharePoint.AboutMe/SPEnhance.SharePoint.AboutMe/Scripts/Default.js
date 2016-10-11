@@ -1,23 +1,21 @@
-﻿var appWebUrl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
-
-var objClient = new SPClient();
-objClient.consoleLog(true);
-
-(function () {
+﻿(function () {
 
     $(document).ready(function () {
 		clearMsg();
 
-		objClient.getListData(appWebUrl, overviewListName, getFieldsByListName(overviewListName), "<View><RowLimit>1</RowLimit></View>", callbackOverviewSuccess, callbackFail);
-		objClient.getListData(appWebUrl, personalInfoListName, getFieldsByListName(personalInfoListName), "<View><RowLimit>1</RowLimit></View>", callbackPersonalInfoSuccess, callbackFail);
-		objClient.getListData(appWebUrl, skillListName, getFieldsByListName(skillListName), "", callbackSkillSuccess, callbackFail);
-		objClient.getListData(appWebUrl, certificationListName, getFieldsByListName(certificationListName), "", callbackCertificationSuccess, callbackFail);
-		objClient.getListData(appWebUrl, projectListName, getFieldsByListName(projectListName), "", callbackProjectSuccess, callbackFail);
-		objClient.getListData(appWebUrl, experienceListName, getFieldsByListName(experienceListName), "", callbackExperienceSuccess, callbackFail);
-		objClient.getListData(appWebUrl, educationListName, getFieldsByListName(educationListName), "", callbackEducationSuccess, callbackFail);
+		getUserName();
 		
-        getUserName();
-		
+		var objClient = new SPClient();
+		objClient.consoleLog(true);
+
+		objClient.getListData(appWebUrl, overviewListName, getFieldsByListName(overviewListName), "<View><Where><Eq><FieldRef Name='Author' LookupId='True'/><Value Type='Lookup'><UserID/></Value></Eq></Where><RowLimit>1</RowLimit></View>", callbackOverviewSuccess, callbackFail);
+		objClient.getListData(appWebUrl, personalInfoListName, getFieldsByListName(personalInfoListName), "<View><Where><Eq><FieldRef Name='Author' LookupId='True'/><Value Type='Lookup'><UserID/></Value></Eq></Where><RowLimit>1</RowLimit></View>", callbackPersonalInfoSuccess, callbackFail);
+		objClient.getListData(appWebUrl, skillListName, getFieldsByListName(skillListName), "<View><Where><Eq><FieldRef Name='Author' LookupId='True'/><Value Type='Lookup'><UserID/></Value></Eq></Where></View>", callbackSkillSuccess, callbackFail);
+		objClient.getListData(appWebUrl, certificationListName, getFieldsByListName(certificationListName), "<View><Where><Eq><FieldRef Name='Author' LookupId='True'/><Value Type='Lookup'><UserID/></Value></Eq></Where></View>", callbackCertificationSuccess, callbackFail);
+		objClient.getListData(appWebUrl, projectListName, getFieldsByListName(projectListName), "<View><Where><Eq><FieldRef Name='Author' LookupId='True'/><Value Type='Lookup'><UserID/></Value></Eq></Where></View>", callbackProjectSuccess, callbackFail);
+		objClient.getListData(appWebUrl, experienceListName, getFieldsByListName(experienceListName), "<View><Where><Eq><FieldRef Name='Author' LookupId='True'/><Value Type='Lookup'><UserID/></Value></Eq></Where></View>", callbackExperienceSuccess, callbackFail);
+		objClient.getListData(appWebUrl, educationListName, getFieldsByListName(educationListName), "<View><Where><Eq><FieldRef Name='Author' LookupId='True'/><Value Type='Lookup'><UserID/></Value></Eq></Where></View>", callbackEducationSuccess, callbackFail);
+        		
         $("#print").click(function () {
 			window.print();
 		});
@@ -30,16 +28,14 @@ objClient.consoleLog(true);
 		var context = SP.ClientContext.get_current();
 		var user = context.get_web().get_currentUser();
         context.load(user);
-        context.executeQueryAsync(onSuccess, onFail);
-		function onSuccess() {
-	        $('.title').text(user.get_title());
+        context.executeQueryAsync(onUserNameSuccess, onUserNameFail);
+
+        function onUserNameSuccess() {
+		    $('.title').text(user.get_title());
 	    }
 	
-	    function onFail(sender, args) {
+        function onUserNameFail(sender, args) {
 	        showMsg('Failed to get user name. Error:' + args.get_message());
 	    }
     }
-		
-	
-	
 })();
