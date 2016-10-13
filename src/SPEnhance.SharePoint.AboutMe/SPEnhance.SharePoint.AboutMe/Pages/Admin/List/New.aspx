@@ -45,12 +45,13 @@
 					</p>
 				</div>
 			</div>
-			<div class="text-right">
-				<a class="pointerCursor" id="refresh">Refresh</a> | <a id="viewResume">View Resume</a> | <a id="adminHome">Admin Home</a>
+			
+            <div class="row">
+				<div class="col-md-6 no-print">
+					<input type="button" value="Back to SharePoint" id="backToSharePoint" />
+				</div>
+				<div class="col-md-6 text-right no-print footer-menu"></div>
 			</div>
-            <div>
-                <input type="button" value="Back to SharePoint" id="backToSharePoint" />
-            </div>
 		</div>
 	</body>
 </html>

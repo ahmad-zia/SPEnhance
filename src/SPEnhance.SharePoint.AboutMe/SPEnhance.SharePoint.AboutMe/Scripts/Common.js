@@ -21,11 +21,13 @@ var listNames = {
 	[
 		{
 			"listName": overviewListName,
-			"fields": [{ "fieldInternalName": "Title", "fieldDisplayName": "Short Overview", "fieldType": "Text" }, { "fieldInternalName": "LongOverview", "fieldDisplayName": "Long Overview", "fieldType": "Note", "numLines": "6", "richText": "FALSE", "sortable": "FALSE" }]
+			"fields": [{ "fieldInternalName": "Title", "fieldDisplayName": "Short Overview", "fieldType": "Text" }, { "fieldInternalName": "LongOverview", "fieldDisplayName": "Long Overview", "fieldType": "Note", "numLines": "6", "richText": "FALSE", "sortable": "FALSE" }],
+            "maxRows": 1
 		},
 		{
 			"listName": personalInfoListName,
-			"fields": [{"fieldInternalName": "Title", "fieldDisplayName":"Address", "fieldType":"Text"}, {"fieldInternalName": "Email", "fieldDisplayName":"Email", "fieldType":"Text"}, {"fieldInternalName": "Phone", "fieldDisplayName":"Phone", "fieldType":"Text"}]
+			"fields": [{ "fieldInternalName": "Title", "fieldDisplayName": "Address", "fieldType": "Text" }, { "fieldInternalName": "Email", "fieldDisplayName": "Email", "fieldType": "Text" }, { "fieldInternalName": "Phone", "fieldDisplayName": "Phone", "fieldType": "Text" }],
+			"maxRows": 1
 		}, 
 		{
 			"listName": skillListName,
@@ -51,8 +53,11 @@ var listNames = {
 };
 	
 $(document).ready(function () {
-	$("#refresh").click(function(){
-		refreshPage();
+
+	$(".footer-menu").html("<a class=\"pointerCursor\" id=\"refresh\">Refresh</a> | <a class=\"pointerCursor\" id=\"viewResume\">View Resume</a> | <a class=\"pointerCursor\" id=\"adminHome\">Admin Home</a> | <a class=\"pointerCursor\" href=\"https://spenhance.codeplex.com/discussions\" target=\"_blank\">Technical Support</a>");
+
+	$("#refresh").click(function () {
+	    refreshPage();
 	})
 
 	$("#viewResume").attr("href", appWebUrl + "/Pages/Default.aspx?SPAppWebUrl="+appWebUrl+"&SPHostUrl="+hostWebUrl);
@@ -76,6 +81,18 @@ function getFieldsByListName(listName){
 	return fields.substring(0, fields.lastIndexOf(','));
 }
 	
+function getListMaxRows(listName) {
+    var maxRows = -1;//unlimited
+    $.each(listNames.lists, function (i, v) {
+        if (v.listName == listName && v.maxRows != null) {
+            console.log(v.listName + " " + v.maxRows);
+            maxRows = v.maxRows;
+            return false;
+        }
+    });
+    return maxRows;
+}
+
 function getFieldTypeByListFieldInternalName(listName, listFieldName){
 	var fieldType = "";
 	$.each(listNames.lists, function(i, v) {
