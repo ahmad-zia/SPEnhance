@@ -5,9 +5,9 @@
 	    clearMsg();
 	    objClient.consoleLog(true);
 
-		$("#spanListName").text(listName);
+	    $("#spanListName").text(listName);
 		
-		objClient.getListData(appWebUrl, listName, "ID,"+getFieldsByListName(listName), "", callbackListSuccess, callbackFail);
+		objClient.getListData(appWebUrl, listName, "ID," + getFieldsByListName(listName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackListSuccess, callbackFail);
 		
 		$("#new").click(function(){
 		    document.location = "new.aspx?SPAppWebUrl="+appWebUrl+"&listName="+listName+"&SPHostUrl="+hostWebUrl;
@@ -21,7 +21,10 @@
 	function callbackListSuccess(objfieldsData, commaSeperatedFieldInternalNames){
 		var fieldInternalNamesArray = commaSeperatedFieldInternalNames.split(',');
 		var html = "";
-		if(objfieldsData.length > 0){
+		if (objfieldsData.length > 0) {
+		    if (getListMaxRows(listName) == 1)
+		        $("#new").hide();
+
 			html += "<div class='table-responsive'><table class='table table-hover'";
 			html += "<tr>";
 			for(var j=0 ; j<fieldInternalNamesArray.length ; j++){

@@ -95,11 +95,13 @@
 				<div class="panel-heading">Projects</div>
 				<div id="project" class="panel-body">Loading...</div>
 			</div>
-			<div class="text-right no-print"><a id="viewAdmin">Admin</a> | <a href="#" id="print">Print</a> | <a class="pointerCursor" id="refresh">Refresh</a></div>
-
-            <div class="no-print">
-                <input type="button" value="Back to SharePoint" id="backToSharePoint" />
-            </div>
+			
+            <div class="row">
+				<div class="col-md-6 no-print">
+					<input type="button" value="Back to SharePoint" id="backToSharePoint" />
+				</div>
+				<div class="col-md-6 text-right no-print footer-menu"></div>
+			</div>
 		</div>
         
 	</body>
