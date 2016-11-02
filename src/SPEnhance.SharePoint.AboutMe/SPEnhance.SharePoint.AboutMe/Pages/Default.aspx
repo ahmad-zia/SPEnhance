@@ -17,12 +17,13 @@
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		
 		<link rel="Stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-		<link rel="Stylesheet" type="text/css" href="../Content/App.css" />
-		<link rel="stylesheet" type="text/css" href="../Content/Print.css" media="print" />
+		<link rel="Stylesheet" type="text/css" href="../Content/App.min.css" />
+		<link rel="stylesheet" type="text/css" href="../Content/Print.min.css" media="print" />
 		
-		<script type="text/javascript" src="../Scripts/Common.js"></script>
-		<script type="text/javascript" src="../Scripts/CSOM.js"></script>
-		<script type="text/javascript" src="../Scripts/Default.js"></script>
+        <script type="text/javascript" src="../Scripts/Initialize.min.js"></script>
+		<script type="text/javascript" src="../Scripts/Common.min.js"></script>
+		<script type="text/javascript" src="../Scripts/CSOM.min.js"></script>
+		<script type="text/javascript" src="../Scripts/Default.min.js"></script>
         
 	</head>
 	<body>
@@ -36,11 +37,11 @@
 				<span id="spanMsg"></span>
 			</div>
 			<div class="row">
-				<div class="col-xs-12 col-md-8">
+				<div class="col-xs-12 col-md-7">
 					<div class="title">loading...</div>
 					<div class="short-overview">loading...</div>
 				</div>
-				<div class="col-xs-12 col-md-4">
+				<div class="col-xs-12 col-md-5">
 					<div class="address">
 						<span class="glyphicon glyphicon-home" aria-hidden="true"></span> <span id="address">Loading...</span>
 						<br/><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span id="email">Loading...</span>

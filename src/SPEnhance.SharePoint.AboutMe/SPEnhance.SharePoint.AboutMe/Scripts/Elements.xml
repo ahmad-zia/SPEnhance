@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="Scripts">
-    <File Path="Scripts\Admin\Default.js" Url="Scripts/Admin/Default.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\Admin\List\Edit.js" Url="Scripts/Admin/List/Edit.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\Admin\List\New.js" Url="Scripts/Admin/List/New.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\Admin\List\View.js" Url="Scripts/Admin/List/View.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\Common.js" Url="Scripts/Common.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\CSOM.js" Url="Scripts/CSOM.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\Default.js" Url="Scripts/Default.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\Admin\Default.min.js" Url="Scripts/Admin/Default.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\Admin\List\Edit.min.js" Url="Scripts/Admin/List/Edit.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\Admin\List\New.min.js" Url="Scripts/Admin/List/New.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\Admin\List\View.min.js" Url="Scripts/Admin/List/View.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\Common.min.js" Url="Scripts/Common.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\CSOM.min.js" Url="Scripts/CSOM.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\Default.min.js" Url="Scripts/Default.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\_references.js" Url="Scripts/_references.js" ReplaceContent="TRUE" />
-</Module>
+    <File Path="Scripts\initialize.min.js" Url="Scripts/initialize.min.js" ReplaceContent="TRUE" />
+  </Module>
 </Elements>

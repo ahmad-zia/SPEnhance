@@ -1,4 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
-  <Files>    <ProjectItemFile Source="Admin\Default.js" Target="Scripts\Admin\" Type="ElementFile" />    <ProjectItemFile Source="Admin\List\Edit.js" Target="Scripts\Admin\List\" Type="ElementFile" />    <ProjectItemFile Source="Admin\List\New.js" Target="Scripts\Admin\List\" Type="ElementFile" />    <ProjectItemFile Source="Admin\List\View.js" Target="Scripts\Admin\List\" Type="ElementFile" />    <ProjectItemFile Source="Common.js" Target="Scripts\" Type="ElementFile" />    <ProjectItemFile Source="CSOM.js" Target="Scripts\" Type="ElementFile" />    <ProjectItemFile Source="Default.js" Target="Scripts\" Type="ElementFile" />    <ProjectItemFile Source="_references.js" Target="Scripts\" Type="ElementFile" />    <ProjectItemFile Source="Elements.xml" Target="Scripts\" Type="ElementManifest" /></Files>
+  <Files>
+    <ProjectItemFile Source="Admin\Default.js" Target="Scripts\Admin\" Type="ElementFile" />
+    <ProjectItemFile Source="Admin\List\Edit.js" Target="Scripts\Admin\List\" Type="ElementFile" />
+    <ProjectItemFile Source="Admin\List\New.js" Target="Scripts\Admin\List\" Type="ElementFile" />
+    <ProjectItemFile Source="Admin\List\View.js" Target="Scripts\Admin\List\" Type="ElementFile" />
+    <ProjectItemFile Source="Common.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="CSOM.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="Default.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="_references.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="Elements.xml" Target="Scripts\" Type="ElementManifest" />
+    <ProjectItemFile Source="Initialize.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="Initialize.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="Default.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="CSOM.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="Common.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="Admin\Default.min.js" Target="Scripts\Admin\" Type="ElementFile" />
+    <ProjectItemFile Source="Admin\List\View.min.js" Target="Scripts\Admin\List\" Type="ElementFile" />
+    <ProjectItemFile Source="Admin\List\New.min.js" Target="Scripts\Admin\List\" Type="ElementFile" />
+    <ProjectItemFile Source="Admin\List\Edit.min.js" Target="Scripts\Admin\List\" Type="ElementFile" />
+  </Files>
 </ProjectItem>

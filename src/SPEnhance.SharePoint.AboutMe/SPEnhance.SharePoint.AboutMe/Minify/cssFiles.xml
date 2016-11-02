@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <output  path="..\Content\App.min.css">
+    <input path="..\Content\App.css"/>
+  </output>
+  <output  path="..\Content\Print.min.css">
+    <input path="..\Content\Print.css"/>
+  </output>
+</root>
