@@ -17,11 +17,12 @@
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		
 		<link rel="Stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-		<link rel="Stylesheet" type="text/css" href="../../../Content/App.css" />
+		<link rel="Stylesheet" type="text/css" href="../../../Content/App.min.css" />
 		
-		<script type="text/javascript" src="../../../Scripts/Common.js"></script>
-		<script type="text/javascript" src="../../../Scripts/CSOM.js"></script>
-		<script type="text/javascript" src="../../../Scripts/Admin/List/Edit.js"></script>
+        <script type="text/javascript" src="../../../Scripts/Initialize.min.js"></script>
+		<script type="text/javascript" src="../../../Scripts/Common.min.js"></script>
+		<script type="text/javascript" src="../../../Scripts/CSOM.min.js"></script>
+		<script type="text/javascript" src="../../../Scripts/Admin/List/Edit.min.js"></script>
 	</head>
 	<body>
 		<!--[if lt IE 8]>
@@ -50,7 +51,7 @@
 				<div class="col-md-6 no-print">
 					<input type="button" value="Back to SharePoint" id="backToSharePoint" />
 				</div>
-				<div class="col-md-6 text-right no-print footer-menu"></div>
+				<div class="col-md-6 text-right no-print footer-menu-admin"></div>
 			</div>
 		</div>
 	</body>

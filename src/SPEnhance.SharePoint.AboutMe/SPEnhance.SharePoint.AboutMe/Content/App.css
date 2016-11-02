@@ -1,5 +1,4 @@
-﻿
-body{
+﻿body{
 	font-family: Arial;
 	font-size: 13px;
 	margin-top:20px;
@@ -15,7 +14,7 @@ body{
 }
 
 .address{
-	font-size: 14px;
+	font-size: 14px; 
 }
 .topic-header{
 	padding-top: 20px;
@@ -36,14 +35,17 @@ body{
 	font-size:14px;
 	font-weight: bold;
 }
-.project-version{
+.project-single-height{
+    padding-bottom: 20px;
+}
+.project-tag{
 	font-size:12px;
 	font-style: italic;
 	text-align: left;
 }
 
 @media (min-width: 992px) {
-	.project-version{
+	.project-tag{
 		font-size:12px;
 		font-style: italic;
 		text-align: right;

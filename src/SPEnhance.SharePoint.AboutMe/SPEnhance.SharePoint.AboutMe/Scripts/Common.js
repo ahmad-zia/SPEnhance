@@ -1,60 +1,7 @@
-﻿var hostWebUrl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
-var appWebUrl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
+﻿$(document).ready(function () {
+    $(".footer-menu").html("<a class=\"pointerCursor\" id=\"refresh\">Refresh</a> | <a class=\"pointerCursor\" id=\"adminHome\">Admin Home</a> | <a class=\"pointerCursor\" id=\"print\">Print</a> | <a class=\"pointerCursor\" href=\"https://spenhance.codeplex.com/discussions\" target=\"_blank\">Technical Support</a>");
 
-var overviewListName = "Overview";
-var personalInfoListName = "PersonalInfo";
-var skillListName = "Skills";
-var certificationListName = "Certifications";
-var experienceListName = "Experience";
-var educationListName = "Education";
-var projectListName = "Projects";
-	
-var composedLookListName = "Composed Looks";
-var masterPageGalleryListName = "Master Page Gallery";
-var excludeListNames = [composedLookListName, masterPageGalleryListName];
-	
-var titleFieldName = "Title";
-var excludeListFieldsToCreate = [titleFieldName];
-	
-var listNames = {
-	"lists" : 
-	[
-		{
-			"listName": overviewListName,
-			"fields": [{ "fieldInternalName": "Title", "fieldDisplayName": "Short Overview", "fieldType": "Text" }, { "fieldInternalName": "LongOverview", "fieldDisplayName": "Long Overview", "fieldType": "Note", "numLines": "6", "richText": "FALSE", "sortable": "FALSE" }],
-            "maxRows": 1
-		},
-		{
-			"listName": personalInfoListName,
-			"fields": [{ "fieldInternalName": "Title", "fieldDisplayName": "Address", "fieldType": "Text" }, { "fieldInternalName": "Email", "fieldDisplayName": "Email", "fieldType": "Text" }, { "fieldInternalName": "Phone", "fieldDisplayName": "Phone", "fieldType": "Text" }],
-			"maxRows": 1
-		}, 
-		{
-			"listName": skillListName,
-			"fields": [{"fieldInternalName": "Title", "fieldDisplayName":"Skill", "fieldType":"Text"}, {"fieldInternalName": "Experience", "fieldDisplayName":"Experience", "fieldType":"Text"}]
-		}, 
-		{
-			"listName": certificationListName,
-			"fields": [{"fieldInternalName": "Title", "fieldDisplayName":"Certificate", "fieldType":"Text"}, {"fieldInternalName": "Completed", "fieldDisplayName":"Completed", "fieldType":"Text"}]
-		}, 
-		{
-			"listName": experienceListName,
-			"fields": [{"fieldInternalName": "Title", "fieldDisplayName":"Time (year range)", "fieldType":"Text"}, {"fieldInternalName": "Company", "fieldDisplayName":"Company", "fieldType":"URL", "fieldFormat":"Hyperlink"}]
-		}, 
-		{
-			"listName": educationListName,
-			"fields": [{"fieldInternalName": "Title", "fieldDisplayName":"Degreee", "fieldType":"Text"}, {"fieldInternalName": "University", "fieldDisplayName":"University", "fieldType":"URL", "fieldFormat":"Hyperlink"}, {"fieldInternalName": "Completed", "fieldDisplayName":"Completed", "fieldType":"Text"}]
-		},
-		{
-			"listName": projectListName,
-			"fields": [{"fieldInternalName": "Title", "fieldDisplayName":"Project Name", "fieldType":"Text"}, {"fieldInternalName": "Description", "fieldDisplayName":"Description", "fieldType":"Note", "numLines": "6" , "richText":"FALSE", "sortable": "FALSE"}, {"fieldInternalName": "Tags", "fieldDisplayName":"Tags", "fieldType":"Text"}]
-		}
-	]
-};
-	
-$(document).ready(function () {
-
-	$(".footer-menu").html("<a class=\"pointerCursor\" id=\"refresh\">Refresh</a> | <a class=\"pointerCursor\" id=\"viewResume\">View Resume</a> | <a class=\"pointerCursor\" id=\"adminHome\">Admin Home</a> | <a class=\"pointerCursor\" href=\"https://spenhance.codeplex.com/discussions\" target=\"_blank\">Technical Support</a>");
+    $(".footer-menu-admin").html("<a class=\"pointerCursor\" id=\"refresh\">Refresh</a> | <a class=\"pointerCursor\" id=\"viewResume\">View Resume</a> | <a class=\"pointerCursor\" id=\"adminHome\">Admin Home</a> | <a class=\"pointerCursor\" href=\"https://spenhance.codeplex.com/discussions\" target=\"_blank\">Technical Support</a>");
 
 	$("#refresh").click(function () {
 	    refreshPage();
@@ -68,6 +15,7 @@ $(document).ready(function () {
 		document.location = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
 	});
 });
+
 function getFieldsByListName(listName){
 	var fields = "";
 	$.each(listNames.lists, function(i, v) {
@@ -140,6 +88,7 @@ function showMsg(msg){
 		$("#spanMsg").html(msg);
 	$("#divMsg").show();
 }
+
 function clearMsg(){
 	$("#spanMsg").html("");
 	$("#divMsg").hide();
@@ -162,22 +111,27 @@ function refreshPage(){
 function createSingleList(listName, fromAdminPanel) {
 	$.each(listNames.lists, function (i, v) {
 	    if (v.listName == listName) {
-	        var clientContext = new SP.ClientContext(appWebUrl);
+	        //var clientContext = new SP.ClientContext(appWebUrl);
 	        /*var factory = new SP.ProxyWebRequestExecutorFactory(appWebUrl);
 	        clientContext.set_webRequestExecutorFactory(factory);*/
-	        var appContextSite = new SP.AppContextSite(clientContext, appWebUrl);
-	        createList(clientContext, appContextSite, listName, v.fields, fromAdminPanel);
+	        //var appContextSite = new SP.AppContextSite(clientContext, appWebUrl);
+	        //createList(clientContext, appContextSite, listName, v.fields, fromAdminPanel);
+	        createList(clientContext, listName, v.fields, fromAdminPanel);
 	        return;
 	    }
 	});
 }
 
-function createList(clientContext, appContextSite, listName, fields, fromAdminPanel) {
+//function createList(clientContext, appContextSite, listName, fields, fromAdminPanel) {
+function createList(clientContext, listName, fields, fromAdminPanel) {
 	var listCreationInfo = new SP.ListCreationInformation();
 	listCreationInfo.set_title(listName);
 	listCreationInfo.set_templateType(SP.ListTemplateType.genericList);
 
-	var oList = appContextSite.get_web().get_lists().add(listCreationInfo);
+	//if (webLists === null)
+	//    webLists = clientContext.get_web().get_lists();
+
+	var oList = webLists.add(listCreationInfo);
 
 	clientContext.load(oList);
 	clientContext.executeQueryAsync(onSuccess, onFail);
@@ -186,7 +140,8 @@ function createList(clientContext, appContextSite, listName, fields, fromAdminPa
 	    if (fromAdminPanel)
 	        showMsg("List " + listName + " created.");
 	    console.log("List " + listName + " created.");
-	    createListFields(clientContext, appContextSite, oList, fields, fromAdminPanel)
+	    //createListFields(clientContext, appContextSite, oList, fields, fromAdminPanel)
+	    createListFields(clientContext, oList, fields, fromAdminPanel)
 	}
 	function onFail(sender, args) {
 	    if (fromAdminPanel)
@@ -195,7 +150,8 @@ function createList(clientContext, appContextSite, listName, fields, fromAdminPa
 	}
 }
 
-function createListFields(clientContext, appContextSite, oList, fields, fromAdminPanel) {
+//function createListFields(clientContext, appContextSite, oList, fields, fromAdminPanel) {
+function createListFields(clientContext, oList, fields, fromAdminPanel) {
 	var fieldXml = "";
 	for (var i = 0; i < fields.length ; i++) {
 	    if (jQuery.inArray(fields[i].fieldInternalName, excludeListFieldsToCreate) >= 0)
@@ -222,24 +178,25 @@ function createListFields(clientContext, appContextSite, oList, fields, fromAdmi
 	    console.log("Fields created in List " + oList.get_title());
 	    if (fromAdminPanel) {
 	        showMsg("Fields created in List " + oList.get_title());
-	        displayAllLists(clientContext, appContextSite);
+	        //displayAllLists(clientContext, appContextSite);
+	        displayAllLists(clientContext);
 	    }
 	    else {
-	        var objClient = new SPClient();
+	        //var objClient = new SPClient();
 	        if (oList.get_title() == overviewListName)
-	            objClient.getListData(appWebUrl, overviewListName, getFieldsByListName(overviewListName), "<View><RowLimit>1</RowLimit></View>", callbackOverviewSuccess, callbackFail);
+	            objClient.getListData(overviewListName, getFieldsByListName(overviewListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query><RowLimit>1</RowLimit></View>", callbackOverviewSuccess, callbackFail);
 	        if (oList.get_title() == personalInfoListName)
-	            objClient.getListData(appWebUrl, personalInfoListName, getFieldsByListName(personalInfoListName), "<View><RowLimit>1</RowLimit></View>", callbackPersonalInfoSuccess, callbackFail);
+	            objClient.getListData(personalInfoListName, getFieldsByListName(personalInfoListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query><RowLimit>1</RowLimit></View>", callbackPersonalInfoSuccess, callbackFail);
 	        if (oList.get_title() == skillListName)
-	            objClient.getListData(appWebUrl, skillListName, getFieldsByListName(skillListName), "", callbackSkillSuccess, callbackFail);
+	            objClient.getListData(skillListName, getFieldsByListName(skillListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackSkillSuccess, callbackFail);
 	        if (oList.get_title() == certificationListName)
-	            objClient.getListData(appWebUrl, certificationListName, getFieldsByListName(certificationListName), "", callbackCertificationSuccess, callbackFail);
+	            objClient.getListData(certificationListName, getFieldsByListName(certificationListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackCertificationSuccess, callbackFail);
 	        if (oList.get_title() == projectListName)
-	            objClient.getListData(appWebUrl, projectListName, getFieldsByListName(projectListName), "", callbackProjectSuccess, callbackFail);
+	            objClient.getListData(projectListName, getFieldsByListName(projectListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackProjectSuccess, callbackFail);
 	        if (oList.get_title() == experienceListName)
-	            objClient.getListData(appWebUrl, experienceListName, getFieldsByListName(experienceListName), "", callbackExperienceSuccess, callbackFail);
+	            objClient.getListData(experienceListName, getFieldsByListName(experienceListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackExperienceSuccess, callbackFail);
 	        if (oList.get_title() == educationListName)
-	            objClient.getListData(appWebUrl, educationListName, getFieldsByListName(educationListName), "", callbackEducationSuccess, callbackFail);
+	            objClient.getListData(educationListName, getFieldsByListName(educationListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackEducationSuccess, callbackFail);
 	    }
 	}
 
@@ -250,12 +207,14 @@ function createListFields(clientContext, appContextSite, oList, fields, fromAdmi
 	}
 }
 
-function displayAllLists(clientContext, appContextSite) {
-	var listCollection = clientContext.get_web().get_lists();
-	clientContext.load(listCollection);
+//function displayAllLists(clientContext, appContextSite) {
+function displayAllLists(clientContext){
+    //var listCollection = clientContext.get_web().get_lists();
+    //clientContext.load(listCollection);
+	clientContext.load(webLists);
 	clientContext.executeQueryAsync(onSuccess, onFail);
 	function onSuccess() {
-	    var le = listCollection.getEnumerator();
+	    var le = webLists.getEnumerator();
 	    var oList;
 	    var listArray = [];
 	    var counter = 0;
@@ -307,31 +266,45 @@ function refreshDynamicEventListener() {
 	// Re-add event handler for all matching elements
 	$(".deleteSingleList").on("click", function () {
 	    clearMsg();
-	    deleteSingleList($(this).attr("data"));
+	    if (confirm("Are you sure you want to delete?"))
+	        deleteSingleList($(this).attr("data"));
+	});
+
+	$(".deleteItem").off();
+
+    // Re-add event handler for all matching elements
+	$(".deleteItem").on("click", function () {
+	    clearMsg();
+	    if (confirm("Are you sure you want to delete?"))
+	        objClient.deleteListData(listName, $(this).attr("data"), callbackDeleteItemSuccess, callbackDeleteItemFail);
 	});
 }
 
 function deleteSingleList(listName) {
 	$.each(listNames.lists, function (i, v) {
 	    if (v.listName == listName) {
-	        var clientContext = new SP.ClientContext(appWebUrl);
+	        //var clientContext = new SP.ClientContext(appWebUrl);
 	        /*var factory = new SP.ProxyWebRequestExecutorFactory(appWebUrl);
 	        clientContext.set_webRequestExecutorFactory(factory);*/
-	        var appContextSite = new SP.AppContextSite(clientContext, appWebUrl);
-	        deleteList(clientContext, appContextSite, listName);
+	        //var appContextSite = new SP.AppContextSite(clientContext, appWebUrl);
+	        //deleteList(clientContext, appContextSite, listName);
+	        deleteList(clientContext, listName);
 	        return;
 	    }
 	});
 }
 
-function deleteList(clientContext, appContextSite, listName) {
-	var listCollection = appContextSite.get_web().get_lists();
-	clientContext.load(listCollection);
+//function deleteList(clientContext, appContextSite, listName) {
+function deleteList(clientContext, listName) {
+    //var listCollection = appContextSite.get_web().get_lists();
+    //var listCollection = clientContext.get_web().get_lists();
+    //clientContext.load(listCollection);
+    clientContext.load(webLists);
 	clientContext.executeQueryAsync(onSuccess, onFail);
 
 	function onSuccess() {
 	    var listExists = false;
-	    var le = listCollection.getEnumerator();
+	    var le = webLists.getEnumerator();
 	    var oList;
 	    while (le.moveNext()) {
 	        oList = le.get_current();
@@ -350,8 +323,10 @@ function deleteList(clientContext, appContextSite, listName) {
 	    }
 
 	    function onListDeleteSuccess() {
-	        showMsg("List " + listName + " deleted.");
-	        displayAllLists(clientContext, appContextSite);
+	        //showMsg("List " + listName + " deleted.");
+	        //displayAllLists(clientContext, appContextSite);
+	        //displayAllLists(clientContext);
+	        refreshPage();
 	    }
 	    function onListDeleteFail(sender, args) {
 	        showMsg("Failed to delete list " + listName + ". Error:" + args.get_message());
@@ -364,13 +339,19 @@ function deleteList(clientContext, appContextSite, listName) {
 }
 
 
-function deleteAllLists(clientContext, appContextSite) {
+//function deleteAllLists(clientContext, appContextSite) {
+function deleteAllLists(clientContext) {
     $.each(listNames.lists, function (i, v) {
-        var oList = appContextSite.get_web().get_lists().getByTitle(v.listName);
+        //var oList = appContextSite.get_web().get_lists().getByTitle(v.listName);
+        //var oList = clientContext.get_web().get_lists().getByTitle(v.listName);
+        var oList = webLists.getByTitle(v.listName);
         oList.deleteObject();
         clientContext.executeQueryAsync(
             function () {
                 showMsg("List " + v.listName + " deleted.");
+                deletedListCounter++;
+                if(deletedListCounter == listNames.lists.length)
+                    refreshPage();
             },
             function (sender, args) {
                 showMsg("Failed to delete list " + v.listName + ". Error:" + args.get_message());
@@ -397,6 +378,8 @@ function callbackOverviewSuccess(objfieldsData, commaSeperatedFieldInternalNames
 	    $('.short-overview').html("<a name=\"add\" class=\"no-print\" href=\"" + document.URL.replace("/Pages/Default.aspx?", "/Pages/Admin/List/new.aspx?listName=" + listName + "&") + "\">Add</a>");
 	    $('.long-overview').html("<a name=\"add\" class=\"no-print\" href=\"" + document.URL.replace("/Pages/Default.aspx?", "/Pages/Admin/List/new.aspx?listName=" + listName + "&") + "\">Add</a>");
 	}
+	objClient.getListData(personalInfoListName, getFieldsByListName(personalInfoListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query><RowLimit>1</RowLimit></View>", callbackPersonalInfoSuccess, callbackFail);
+	
 }
 
 function callbackPersonalInfoSuccess(objfieldsData, commaSeperatedFieldInternalNames, listName) {
@@ -410,6 +393,8 @@ function callbackPersonalInfoSuccess(objfieldsData, commaSeperatedFieldInternalN
 	    $('#email').html("<a name=\"add\" class=\"no-print\" href=\"" + document.URL.replace("/Pages/Default.aspx?", "/Pages/Admin/List/new.aspx?listName=" + listName + "&") + "\">Add</a>");
 	    $('#phone').html("<a name=\"add\" class=\"no-print\" href=\"" + document.URL.replace("/Pages/Default.aspx?", "/Pages/Admin/List/new.aspx?listName=" + listName + "&") + "\">Add</a>");
 	}
+	objClient.getListData(skillListName, getFieldsByListName(skillListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackSkillSuccess, callbackFail);
+	
 }
 
 function callbackSkillSuccess(objfieldsData, commaSeperatedFieldInternalNames, listName) {
@@ -425,6 +410,8 @@ function callbackSkillSuccess(objfieldsData, commaSeperatedFieldInternalNames, l
 	    }
 	}
 	$("#skill").html(html);
+	objClient.getListData(certificationListName, getFieldsByListName(certificationListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackCertificationSuccess, callbackFail);
+	
 }
 
 function callbackCertificationSuccess(objfieldsData, commaSeperatedFieldInternalNames, listName) {
@@ -440,6 +427,9 @@ function callbackCertificationSuccess(objfieldsData, commaSeperatedFieldInternal
 	    }
 	}
 	$("#certification").html(html);
+	
+	objClient.getListData(experienceListName, getFieldsByListName(experienceListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackExperienceSuccess, callbackFail);
+	
 }
 function callbackExperienceSuccess(objfieldsData, commaSeperatedFieldInternalNames, listName) {
 	var html = "<tr><td><a name=\"add\" class=\"no-print\" href=\"" + document.URL.replace("/Pages/Default.aspx?", "/Pages/Admin/List/new.aspx?listName=" + listName + "&") + "\">Add</a></td></tr>";
@@ -455,6 +445,8 @@ function callbackExperienceSuccess(objfieldsData, commaSeperatedFieldInternalNam
 	    }
 	}
 	$("#experience").html(html);
+	objClient.getListData(educationListName, getFieldsByListName(educationListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackEducationSuccess, callbackFail);
+
 }
 
 function callbackEducationSuccess(objfieldsData, commaSeperatedFieldInternalNames, listName) {
@@ -472,6 +464,7 @@ function callbackEducationSuccess(objfieldsData, commaSeperatedFieldInternalName
 	    }
 	}
 	$("#education").html(html);
+	objClient.getListData(projectListName, getFieldsByListName(projectListName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackProjectSuccess, callbackFail);
 }
 
 function callbackProjectSuccess(objfieldsData, commaSeperatedFieldInternalNames, listName) {
@@ -480,26 +473,20 @@ function callbackProjectSuccess(objfieldsData, commaSeperatedFieldInternalNames,
 	    html = "";
 	    for (var i = 0 ; i < objfieldsData.length ; i++) {
 	        var j = 0;
-	        html += "<div class='row'>" +
-					"<div class='col-xs-12 col-md-5 project'>" + objfieldsData[i]["Title"] + "</div>" +
-					"<div class='col-xs-12 col-md-7 project-version'>" + objfieldsData[i]["Tags"] + "</div>" +
-				"</div>" +
-				"<hr class='hrLine'/>" +
-			objfieldsData[i]["Description"];
+	        html += "<div class='project-single-height'>";
+	            html += "<div class='row'>" +
+					        "<div class='col-xs-12 col-md-5 project'>" + objfieldsData[i]["Title"] + "</div>" +
+					        "<div class='col-xs-12 col-md-7 project-version'>" + objfieldsData[i]["Tags"] + "</div>" +
+				        "</div>" +
+				        "<hr class='hrLine'/>" +
+			            objfieldsData[i]["Description"]
+            html += "</div>";
 	    }
 	}
 	$("#project").html(html);
 }
 
-function getQueryStringParameter(paramToRetrieve) {
-	var params =
-	    document.URL.split("?")[1].split("&");
-	for (var i = 0; i < params.length; i = i + 1) {
-	    var singleParam = params[i].split("=");
-	    if (singleParam[0] == paramToRetrieve)
-	        return singleParam[1];
-	}
-}
+
 
 function setCookie(cname, cvalue) {
 	document.cookie = cname + "=" + cvalue;
@@ -518,4 +505,14 @@ function getCookie(cname) {
 	    }
 	}
 	return "";
+}
+
+function getClientContext(siteUrl) {
+    if ($.isNullOrEmpty(siteUrl))
+        return new SP.ClientContext.get_current();
+    return new SP.ClientContext(siteUrl);
+}
+
+function updateUrl(urlFieldId) {
+    $("#" + urlFieldId).val($("#" + urlFieldId + "_url").val() + ", " + $("#" + urlFieldId + "_description").val());
 }

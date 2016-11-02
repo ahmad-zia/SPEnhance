@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <output  path="..\scripts\Initialize.min.js">
+    <input path="..\scripts\Initialize.js"/>
+  </output>
+
+  <output  path="..\scripts\Default.min.js">
+    <input path="..\scripts\Default.js"/>
+  </output>
+
+  <output  path="..\scripts\CSOM.min.js">
+    <input path="..\scripts\CSOM.js"/>
+  </output>
+
+  <output  path="..\scripts\Common.min.js">
+    <input path="..\scripts\Common.js"/>
+  </output>
+
+  <output  path="..\scripts\Admin\Default.min.js">
+    <input path="..\scripts\Admin\Default.js"/>
+  </output>
+
+  <output  path="..\scripts\Admin\List\Edit.min.js">
+    <input path="..\scripts\Admin\List\Edit.js"/>
+  </output>
+
+  <output  path="..\scripts\Admin\List\New.min.js">
+    <input path="..\scripts\Admin\List\New.js"/>
+  </output>
+
+  <output  path="..\scripts\Admin\List\View.min.js">
+    <input path="..\scripts\Admin\List\View.js"/>
+  </output>
+</root>

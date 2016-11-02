@@ -60,17 +60,30 @@
     <None Include="Scripts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e3e8004d-9e63-4a0c-a998-15e351196879}</SharePointProjectItemId>
     </None>
+    <Content Include="Content\App.min.css" />
     <Content Include="Content\Elements.xml" />
+    <Content Include="Content\Print.min.css" />
     <Content Include="Elements.xml" />
     <Content Include="Features\SPEnhance.SharePoint.AboutMe\SPEnhance.SharePoint.AboutMe.Template.xml">
       <DependentUpon>SPEnhance.SharePoint.AboutMe.feature</DependentUpon>
     </Content>
     <Content Include="Images\Elements.xml" />
+    <Content Include="favicon.ico" />
     <Content Include="Images\ResumeBuilder.png">
       <OpcRelationship>manifest-icon</OpcRelationship>
     </Content>
+    <Content Include="Minify\AjaxMin.exe" />
+    <Content Include="Minify\jsFiles.xml" />
+    <Content Include="Minify\cssFiles.xml" />
     <Content Include="Pages\Elements.xml" />
     <Content Include="Readme.txt" />
+    <Content Include="Scripts\Admin\Default.min.js" />
+    <Content Include="Scripts\Admin\List\Edit.min.js" />
+    <Content Include="Scripts\Admin\List\New.min.js" />
+    <Content Include="Scripts\Admin\List\View.min.js" />
+    <Content Include="Scripts\Common.min.js" />
+    <Content Include="Scripts\CSOM.min.js" />
+    <Content Include="Scripts\Default.min.js" />
     <Content Include="Scripts\Elements.xml" />
     <None Include="SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4d70941a-53ab-4d59-85ad-0e4e4114ee32}</SharePointProjectItemId>
@@ -92,6 +105,8 @@
     <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\CSOM.js" />
     <Content Include="Scripts\Default.js" />
+    <Content Include="Scripts\Initialize.min.js" />
+    <Content Include="Scripts\Initialize.js" />
     <Content Include="Scripts\_references.js" />
   </ItemGroup>
   <ItemGroup>
@@ -114,4 +129,8 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+  <PropertyGroup>
+    <PreBuildEvent>"$(ProjectDir)Minify\AjaxMinifier.exe" -CSS -CLOBBER -xml $(ProjectDir)Minify\cssFiles.xml"
+"$(ProjectDir)Minify\AjaxMinifier.exe" -JS -CLOBBER -xml $(ProjectDir)Minify\jsFiles.xml"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

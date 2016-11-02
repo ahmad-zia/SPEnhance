@@ -1,22 +1,29 @@
-﻿(function(){
+﻿//var clientContext = null;
+//var webLists = null;
+(function () {
 	this.SPClient = function(){
 		var doConsoleLog = false;
 
-		this.getListData = function(siteUrl, listName, commaSeperatedFieldInternalNames, camlQuery, successCallback, failCallback){
+	    //this.getListData = function(siteUrl, listName, commaSeperatedFieldInternalNames, camlQuery, successCallback, failCallback){
+		this.getListData = function (listName, commaSeperatedFieldInternalNames, camlQuery, successCallback, failCallback) {
 			var errorMessage = "";
-			if($.isNullOrEmpty(siteUrl)){
+			/*if($.isNullOrEmpty(siteUrl)){
 				errorMessage = "Site Url \"" + siteUrl + "\" is empty.";
 				$.displayConsoleLog(errorMessage);
 				return;
-			}
+			}*/
 			if($.isNullOrEmpty(listName)){
 				errorMessage = "List name \"" + listName + "\" is empty.";
 				$.displayConsoleLog(errorMessage);
 				return;
 			}
 			
-			var clientContext = $.getClientContext(siteUrl);
-			var list = clientContext.get_web().get_lists().getByTitle(listName);
+			/*if (clientContext === null)
+			    clientContext = getClientContext(siteUrl);
+			if (webLists === null)
+			    webLists = clientContext.get_web().get_lists();*/
+
+			var list = webLists.getByTitle(listName);
 			var listFields = list.get_fields();
 			clientContext.load(listFields);
 			clientContext.executeQueryAsync(onSuccessFields, onFailFields);
@@ -55,8 +62,8 @@
 							if(fieldsArr[fieldName] == SP.FieldType.URL){
 								if(listItem.get_item(fieldName) !== null){
 									var objUrl = {};
-									objUrl["description"] = listItem.get_item(fieldName).get_description();
-									objUrl["url"] = listItem.get_item(fieldName).get_url();
+									objUrl[descriptionFieldName] = listItem.get_item(fieldName).get_description();
+									objUrl[urlFieldName] = listItem.get_item(fieldName).get_url();
 									objField[fieldName] = objUrl;
 								}
 								else
@@ -98,21 +105,23 @@
 			}
 		}
 		
-		this.createOrUpdateListItem = function(siteUrl, listName, listItemId, jsonListData, successCallback, failCallback){
+	    //this.createOrUpdateListItem = function(siteUrl, listName, listItemId, jsonListData, successCallback, failCallback){
+	    this.createOrUpdateListItem = function(listName, listItemId, jsonListData, successCallback, failCallback){
 			var errorMessage = "";
-			if($.isNullOrEmpty(siteUrl)){
+			/*if($.isNullOrEmpty(siteUrl)){
 				errorMessage = "Site Url \"" + siteUrl + "\" is empty.";
 				$.displayConsoleLog(errorMessage);
 				return;
-			}
+			}*/
 			if($.isNullOrEmpty(listName)){
 				errorMessage = "List name \"" + listName + "\" is empty.";
 				$.displayConsoleLog(errorMessage);
 				return;
 			}
 			
-			var clientContext = $.getClientContext(siteUrl);
-			var list = clientContext.get_web().get_lists().getByTitle(listName);
+			//var clientContext = getClientContext(siteUrl);
+	        //var list = clientContext.get_web().get_lists().getByTitle(listName);
+			var list = webLists.getByTitle(listName);
 			
 			var listItemCreateInfo = new SP.ListItemCreationInformation();
 			var listItem;
@@ -135,7 +144,6 @@
 			function onFail(sender, args) {
 			    errorMessage = $.createErrorReason("createOrUpdateListItem", args);
 			    $.displayConsoleLog(errorMessage);
-			    $.displayConsoleLog("siteUrl: " + siteUrl);
 			    $.displayConsoleLog("listName: " + listName);
 			    $.displayConsoleLog("listItemId: " + listItemId);
 			    $.displayConsoleLog("jsonListData:- ");
@@ -157,13 +165,14 @@
 			}
 		}
 		
-		this.deleteListData = function(siteUrl, listName, listItemId, successCallback, failCallback){
+	    //this.deleteListData = function(siteUrl, listName, listItemId, successCallback, failCallback){
+	    this.deleteListData = function (listName, listItemId, successCallback, failCallback) {
 			var errorMessage = "";
-			if($.isNullOrEmpty(siteUrl)){
+			/*if($.isNullOrEmpty(siteUrl)){
 				errorMessage = "Site Url \"" + siteUrl + "\" is empty.";
 				$.displayConsoleLog(errorMessage);
 				return;
-			}
+			}*/
 			if($.isNullOrEmpty(listName)){
 				errorMessage = "List name \"" + listName + "\" is empty.";
 				$.displayConsoleLog(errorMessage);
@@ -174,8 +183,9 @@
 				$.displayConsoleLog(errorMessage);
 				return;
 			}
-			var clientContext = $.getClientContext(siteUrl);
-			var list = clientContext.get_web().get_lists().getByTitle(listName);
+			//var clientContext = getClientContext(siteUrl);
+	        //var list = clientContext.get_web().get_lists().getByTitle(listName);
+			var list = webLists.getByTitle(listName);
 			
 			var listItem = list.getItemById(listItemId);
 			listItem.deleteObject();
@@ -203,21 +213,23 @@
 			}
 		}
 		
-		this.deleteAllListData = function(siteUrl, listName, successCallback, failCallback){
+	    //this.deleteAllListData = function(siteUrl, listName, successCallback, failCallback){
+	    this.deleteAllListData = function (listName, successCallback, failCallback) {
 			var errorMessage = "";
-			if($.isNullOrEmpty(siteUrl)){
+			/*if($.isNullOrEmpty(siteUrl)){
 				errorMessage = "Site Url \"" + siteUrl + "\" is empty.";
 				$.displayConsoleLog(errorMessage);
 				return;
-			}
+			}*/
 			if($.isNullOrEmpty(listName)){
 				errorMessage = "List name \"" + listName + "\" is empty.";
 				$.displayConsoleLog(errorMessage);
 				return;
 			}
 			
-			var clientContext = $.getClientContext(siteUrl);
-			var list = clientContext.get_web().get_lists().getByTitle(listName);
+			//var clientContext = getClientContext(siteUrl);
+	        //var list = clientContext.get_web().get_lists().getByTitle(listName);
+			var list = webLists.getByTitle(listName);
 			
 			var query = new SP.CamlQuery();
 			var items = list.getItems(query);
@@ -259,11 +271,7 @@
 			$.displayConsoleLog("console log enabled");
 		}
 		
-		$.getClientContext = function(siteUrl){
-			if($.isNullOrEmpty(siteUrl))
-				return new SP.ClientContext.get_current();
-			return new SP.ClientContext(siteUrl);
-		}
+		
 		
 		$.displayConsoleLog = function(msg){
 			if(doConsoleLog) console.log(msg);
