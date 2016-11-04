@@ -2,9 +2,9 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="Pages">
     <File Path="Pages\Admin\Default.aspx" Url="Pages/Admin/Default.aspx" ReplaceContent="TRUE" />
-    <File Path="Pages\Admin\List\Edit.aspx" Url="Pages/Admin/List/Edit.aspx" ReplaceContent="TRUE" />
     <File Path="Pages\Admin\List\New.aspx" Url="Pages/Admin/List/New.aspx" ReplaceContent="TRUE" />
     <File Path="Pages\Admin\List\View.aspx" Url="Pages/Admin/List/View.aspx" ReplaceContent="TRUE" />
     <File Path="Pages\Default.aspx" Url="Pages/Default.aspx" ReplaceContent="TRUE" />
-</Module>
+    <File Path="Pages\Admin\List\Edit.aspx" Url="Pages/Admin/List/Edit.aspx" ReplaceContent="TRUE" />
+  </Module>
 </Elements>

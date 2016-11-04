@@ -1,28 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Resume Builder</title> 
-		<meta name="description" content="">
-		<meta http-equiv="default-style" content="text/css" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="start" href="Default.aspx" title="Resume Builder" />
-		
-		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js"></script>	
-		<script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
-		<script type="text/javascript" src="/_layouts/15/sp.js"></script>
-		<script type="text/javascript" src="/_layouts/15/sp.requestexecutor.js"></script>
-		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		
-		<link rel="Stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-		<link rel="Stylesheet" type="text/css" href="../../Content/App.min.css" />
-		
-		<script type="text/javascript" src="../../Scripts/Initialize.min.js"></script>
-        <script type="text/javascript" src="../../Scripts/Common.min.js"></script>
-		<script type="text/javascript" src="../../Scripts/Admin/Default.min.js"></script>
-		<script type="text/javascript" src="../../Scripts/CSOM.min.js"></script>
+   		<title></title> 
+		<script type="text/javascript" src="../../Scripts/External/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="../../Scripts/External/MicrosoftAjax.js"></script>
+        <script type="text/javascript">
+            $("head").append('<script type="text/javascript" src="../../Scripts/no-cache.min.js?d=' + new Date().toISOString() + '">');
+            $("head").append('<script type="text/javascript" src="../../Scripts/Admin/Default.min.js?v=' + projectVersion + '">');
+        </script>
 	</head>
 	<body>
 		<!--[if lt IE 8]>

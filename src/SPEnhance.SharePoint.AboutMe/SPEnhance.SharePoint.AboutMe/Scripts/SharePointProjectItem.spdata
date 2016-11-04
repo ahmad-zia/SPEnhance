@@ -19,5 +19,9 @@
     <ProjectItemFile Source="Admin\List\View.min.js" Target="Scripts\Admin\List\" Type="ElementFile" />
     <ProjectItemFile Source="Admin\List\New.min.js" Target="Scripts\Admin\List\" Type="ElementFile" />
     <ProjectItemFile Source="Admin\List\Edit.min.js" Target="Scripts\Admin\List\" Type="ElementFile" />
+    <ProjectItemFile Source="External\jquery-1.9.1.min.js" Target="Scripts\External\" Type="ElementFile" />
+    <ProjectItemFile Source="External\MicrosoftAjax.js" Target="Scripts\External\" Type="ElementFile" />
+    <ProjectItemFile Source="no-cache.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="no-cache.min.js" Target="Scripts\" Type="ElementFile" />
   </Files>
 </ProjectItem>

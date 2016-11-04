@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+  <output  path="..\scripts\no-cache.min.js">
+    <input path="..\scripts\no-cache.js"/>
+  </output>
   <output  path="..\scripts\Initialize.min.js">
     <input path="..\scripts\Initialize.js"/>
   </output>

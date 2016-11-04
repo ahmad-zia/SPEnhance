@@ -72,9 +72,7 @@
     <Content Include="Images\ResumeBuilder.png">
       <OpcRelationship>manifest-icon</OpcRelationship>
     </Content>
-    <Content Include="Minify\AjaxMin.exe" />
-    <Content Include="Minify\jsFiles.xml" />
-    <Content Include="Minify\cssFiles.xml" />
+    <Content Include="Pages\Admin\List\Edit.aspx" />
     <Content Include="Pages\Elements.xml" />
     <Content Include="Readme.txt" />
     <Content Include="Scripts\Admin\Default.min.js" />
@@ -94,7 +92,6 @@
     <Content Include="Content\Print.css" />
     <Content Include="Images\AppIcon.png" />
     <Content Include="Pages\Admin\Default.aspx" />
-    <Content Include="Pages\Admin\List\Edit.aspx" />
     <Content Include="Pages\Admin\List\New.aspx" />
     <Content Include="Pages\Admin\List\View.aspx" />
     <Content Include="Pages\Default.aspx" />
@@ -105,8 +102,12 @@
     <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\CSOM.js" />
     <Content Include="Scripts\Default.js" />
+    <Content Include="Scripts\External\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\External\MicrosoftAjax.js" />
     <Content Include="Scripts\Initialize.min.js" />
     <Content Include="Scripts\Initialize.js" />
+    <Content Include="Scripts\no-cache.js" />
+    <Content Include="Scripts\no-cache.min.js" />
     <Content Include="Scripts\_references.js" />
   </ItemGroup>
   <ItemGroup>

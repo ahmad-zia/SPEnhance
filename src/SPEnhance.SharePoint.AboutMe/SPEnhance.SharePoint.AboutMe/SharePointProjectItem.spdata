@@ -3,9 +3,6 @@
   <Files>
     <ProjectItemFile Source="Elements.xml" Type="ElementManifest" />
     <ProjectItemFile Source="Readme.txt" Type="ElementFile" />
-    <ProjectItemFile Source="Minify\AjaxMin.exe" Target="Minify\" Type="ElementFile" />
-    <ProjectItemFile Source="Minify\cssFiles.xml" Target="Minify\" Type="ElementFile" />
-    <ProjectItemFile Source="Minify\jsFiles.xml" Target="Minify\" Type="ElementFile" />
     <ProjectItemFile Source="favicon.ico" Type="ElementFile" />
   </Files>
 </ProjectItem>
