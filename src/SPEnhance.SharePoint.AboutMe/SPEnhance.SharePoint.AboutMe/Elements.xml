@@ -3,5 +3,8 @@
   <Module Name="RootModule">
     <File Path="Readme.txt" Url="Readme.txt" ReplaceContent="TRUE" />
     <File Path="favicon.ico" Url="favicon.ico" ReplaceContent="TRUE" />
+    <File Path="_catalogs\masterpage\ResumeBuilder.master" Url="_catalogs/masterpage/ResumeBuilder.master" Type="GhostableInLibrary" />
+    <File Path="_catalogs\masterpage\ResumeBuilderCommon.master" Url="_catalogs/masterpage/ResumeBuilderCommon.master" Type="GhostableInLibrary" />
+    <File Path="_catalogs\masterpage\ResumeBuilderAdmin.master" Url="_catalogs/masterpage/ResumeBuilderAdmin.master" Type="GhostableInLibrary" />
   </Module>
 </Elements>

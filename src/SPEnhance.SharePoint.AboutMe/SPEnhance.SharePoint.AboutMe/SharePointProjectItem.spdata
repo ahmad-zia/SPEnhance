@@ -4,5 +4,8 @@
     <ProjectItemFile Source="Elements.xml" Type="ElementManifest" />
     <ProjectItemFile Source="Readme.txt" Type="ElementFile" />
     <ProjectItemFile Source="favicon.ico" Type="ElementFile" />
+    <ProjectItemFile Source="_catalogs\masterpage\ResumeBuilder.master" Target="_catalogs\masterpage\" Type="ElementFile" />
+    <ProjectItemFile Source="_catalogs\masterpage\ResumeBuilderCommon.master" Target="_catalogs\masterpage\" Type="ElementFile" />
+    <ProjectItemFile Source="_catalogs\masterpage\ResumeBuilderAdmin.master" Target="_catalogs\masterpage\" Type="ElementFile" />
   </Files>
 </ProjectItem>

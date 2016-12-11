@@ -1,32 +1,41 @@
 ﻿var listName = decodeURIComponent(getQueryStringParameter("listName"));
-//var objClient = new SPClient();
-$(document).ready(function () {
+
+resumeBuilderApp.controller('ViewListDataController', ['$scope', 'sharePointService', function ($scope, sharePointService) {
     clearMsg();
 
-    objClient = new SPClient();
-    objClient.consoleLog(true);
+    $scope.listName = listName;
 
-    $("#spanListName").text(listName);
+    $scope.displayNewButton = true;
+    $scope.displayDeleteAllButton = false;
 
-    //objClient.getListData(appWebUrl, listName, "ID," + getFieldsByListName(listName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackListSuccess, callbackFail);
-    objClient.getListData(listName, "ID," + getFieldsByListName(listName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackListSuccess, callbackFail);
+    objClient.getListData($scope, sharePointService, listName, "ID," + getFieldsByListName(listName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackListSuccess, callbackFail);
 
-    $("#new").click(function () {
+    $scope.new = function () {
         document.location = "new.aspx?SPAppWebUrl=" + appWebUrl + "&listName=" + listName + "&SPHostUrl=" + hostWebUrl;
-    });
-    
-    $("#deleteAllListData").click(function () {
-        deleteAllListData(listName);
-    });
-});
+    }
 
-function callbackListSuccess(objfieldsData, commaSeperatedFieldInternalNames) {
+    $scope.deleteAll = function () {
+        clearMsg();
+        deleteAllListData($scope, sharePointService, listName);
+    }
+
+    $scope.deleteListItem = function (listItemId) {
+        clearMsg();
+        if (confirm("Are you sure you want to delete?"))
+            objClient.deleteListData($scope, sharePointService, listName, listItemId, callbackDeleteItemSuccess, callbackDeleteItemFail);
+    }
+}]);
+
+function callbackListSuccess($scope, sharePointService, objfieldsData, commaSeperatedFieldInternalNames, listName) {
     var fieldInternalNamesArray = commaSeperatedFieldInternalNames.split(',');
     var html = "";
     if (objfieldsData.length > 0) {
-        if (getListMaxRows(listName) == 1)
-            $("#new").hide();
-        $("#deleteAllListData").show();
+        if (getListMaxRows(listName) == 1) {
+            $scope.displayNewButton = false;
+            $scope.displayDeleteAllButton = false;
+        }
+        else
+            $scope.displayDeleteAllButton = true;
 
         html += "<div class='table-responsive'><table class='table table-hover'";
         html += "<tr>";
@@ -39,13 +48,13 @@ function callbackListSuccess(objfieldsData, commaSeperatedFieldInternalNames) {
             html += "<tr>";
             for (j = 0 ; j < fieldInternalNamesArray.length ; j++) {
                 var fieldType = getFieldTypeByListFieldInternalName(listName, fieldInternalNamesArray[j]);
-                console.log("fieldType: " + fieldType);
+                consoleLog("fieldType: " + fieldType);
                 html += "<td>";
                 if (objfieldsData[i][fieldInternalNamesArray[j]] == null || objfieldsData[i][fieldInternalNamesArray[j]] == "undefined")
                     html += "&nbsp;";
                 else {
                     if (fieldType == "URL") {
-                        console.log(objfieldsData[i][fieldInternalNamesArray[j]]);
+                        consoleLog(objfieldsData[i][fieldInternalNamesArray[j]]);
                         html += "<a href='" + objfieldsData[i][fieldInternalNamesArray[j]].url + "' target='_blank'>" + objfieldsData[i][fieldInternalNamesArray[j]].description + "</a>";
                     }
                     else
@@ -55,46 +64,42 @@ function callbackListSuccess(objfieldsData, commaSeperatedFieldInternalNames) {
             }
             html += "<td>";
             html += "<a href='" + appWebUrl + "/Pages/Admin/List/Edit.aspx?SPAppWebUrl=" + appWebUrl + "&listName=" + listName + "&listItemId=" + objfieldsData[i]["ID"] + "&SPHostUrl=" + hostWebUrl + "'>Edit</a> | ";
-            html += "<a class='deleteItem pointerCursor' data='" + objfieldsData[i]["ID"] + "'>Delete</a>";
+            html += "<a class='deleteItem' ng-click='deleteListItem(" + objfieldsData[i]["ID"] + ")' data='" + objfieldsData[i]["ID"] + "'>Delete</a>";
             html += "</td>";
             html += "</tr>";
         }
         html += "</table></div>";
-        $("#listData").html(html);
-        refreshDynamicEventListener();
+        $scope.listData = html;
     }
     else {
-        $("#listData").text("No data exist.");
+        $scope.listData = "No data exist.";
+        $scope.displayNewButton = true;
+        $scope.displayDeleteAllButton = false;
     }
 }
 
 function callbackFail(msg) {
-    console.log(msg);
+    consoleLog(msg);
 }
 
-function deleteAllListData(listName) {
+function deleteAllListData($scope, sharePointService, listName) {
     if (confirm("Are you sure you want to delete all list data?")) {
-        //objClient.deleteAllListData(appWebUrl, listName, callbackDeleteAllListDataSuccess, callbackDeleteAllListDataFail);
-        objClient.deleteAllListData(listName, callbackDeleteAllListDataSuccess, callbackDeleteAllListDataFail);
+        objClient.deleteAllListData($scope, sharePointService, listName, callbackDeleteAllListDataSuccess, callbackDeleteAllListDataFail);
     }
 }
 
-function callbackDeleteAllListDataSuccess() {
-    //showMsg("All list data has been deleted.");
-    //objClient.getListData(appWebUrl, listName, "ID," + getFieldsByListName(listName), "", callbackListSuccess, callbackFail);
-    //objClient.getListData(listName, "ID," + getFieldsByListName(listName), "", callbackListSuccess, callbackFail);
-    refreshPage();
+function callbackDeleteAllListDataSuccess($scope, sharePointService, listName) {
+    showMsg("All list data has been deleted.");
+    objClient.getListData($scope, sharePointService, listName, "ID," + getFieldsByListName(listName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackListSuccess, callbackFail);
 }
 
 function callbackDeleteAllListDataFail(msg) {
     showMsg(msg);
 }
 
-function callbackDeleteItemSuccess() {
-    //showMsg("The data has been deleted.");
-    //objClient.getListData(appWebUrl, listName, "ID," + getFieldsByListName(listName), "", callbackListSuccess, callbackFail);
-    //objClient.getListData(listName, "ID," + getFieldsByListName(listName), "", callbackListSuccess, callbackFail);
-    refreshPage();
+function callbackDeleteItemSuccess($scope, sharePointService, listItemId) {
+    showMsg("List data with Id '" + listItemId + "' has been deleted.");
+    objClient.getListData($scope, sharePointService, listName, "ID," + getFieldsByListName(listName), "<View><Query><Where><Eq><FieldRef Name='Author'/><Value Type='Integer'><UserID/></Value></Eq></Where></Query></View>", callbackListSuccess, callbackFail);
 }
 
 function callbackDeleteItemFail(msg) {

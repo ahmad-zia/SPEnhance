@@ -8,10 +8,14 @@
     <File Path="Scripts\Common.min.js" Url="Scripts/Common.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\CSOM.min.js" Url="Scripts/CSOM.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\Default.min.js" Url="Scripts/Default.min.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\_references.js" Url="Scripts/_references.js" ReplaceContent="TRUE" />
     <File Path="Scripts\initialize.min.js" Url="Scripts/initialize.min.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\External\jquery-1.9.1.min.js" Url="Scripts/External/jquery-1.9.1.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\External\MicrosoftAjax.js" Url="Scripts/External/MicrosoftAjax.js" ReplaceContent="TRUE" />
     <File Path="Scripts\no-cache.min.js" Url="Scripts/no-cache.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\External\angular.min.js" Url="Scripts/External/angular.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\External\angular-route.min.js" Url="Scripts/External/angular-route.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\External\sp.js" Url="Scripts/External/sp.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\External\sp.requestexecutor.js" Url="Scripts/External/sp.requestexecutor.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\External\sp.runtime.js" Url="Scripts/External/sp.runtime.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\External\ngHtmlCompile.js" Url="Scripts/External/ngHtmlCompile.js" ReplaceContent="TRUE" />
   </Module>
 </Elements>

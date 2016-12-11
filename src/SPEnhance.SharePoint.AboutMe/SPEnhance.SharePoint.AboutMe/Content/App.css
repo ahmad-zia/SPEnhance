@@ -3,6 +3,9 @@
 	font-size: 13px;
 	margin-top:20px;
 }
+a{
+    cursor: pointer;
+}
 .title{
 	font-size: 40px;
 	font-weight: bold;
@@ -13,9 +16,6 @@
 	font-style: italic;
 }
 
-.address{
-	font-size: 14px; 
-}
 .topic-header{
 	padding-top: 20px;
 	font-size: 20px;
@@ -63,6 +63,29 @@
 .deleteSingleList{
 	cursor: pointer;
 }
-.pointerCursor{
-	cursor: pointer;
+
+.footer-menu {
+    text-align: left;
+}
+
+@media (min-width: 992px){
+    .footer-menu{
+        text-align: right;
+    }
+}
+
+.enableDisableConsoleLogButton{
+    text-align: left;
+}
+
+@media (min-width: 992px){
+    .enableDisableConsoleLogButton{
+        text-align: right;
+    }
+}
+
+.alert {
+    color: #ffffff;
+    background-color: #289eca;
+    border-color: rgba(255, 255, 255, 0.22);
 }

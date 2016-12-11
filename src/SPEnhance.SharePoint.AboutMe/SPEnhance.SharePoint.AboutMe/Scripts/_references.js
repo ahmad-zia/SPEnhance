@@ -7,3 +7,4 @@
 /// <reference path="~/_layouts/15/SP.UI.Dialog.js" />
 /// <reference path="~/_layouts/15/SP.js" />
 /// <reference path="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js" />
+/// <reference path="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" />

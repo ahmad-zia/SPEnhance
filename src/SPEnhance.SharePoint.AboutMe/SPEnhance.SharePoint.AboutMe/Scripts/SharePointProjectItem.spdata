@@ -23,5 +23,11 @@
     <ProjectItemFile Source="External\MicrosoftAjax.js" Target="Scripts\External\" Type="ElementFile" />
     <ProjectItemFile Source="no-cache.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="no-cache.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="External\angular.min.js" Target="Scripts\External\" Type="ElementFile" />
+    <ProjectItemFile Source="External\angular-route.min.js" Target="Scripts\External\" Type="ElementFile" />
+    <ProjectItemFile Source="External\sp.js" Target="Scripts\External\" Type="ElementFile" />
+    <ProjectItemFile Source="External\sp.requestexecutor.js" Target="Scripts\External\" Type="ElementFile" />
+    <ProjectItemFile Source="External\sp.runtime.js" Target="Scripts\External\" Type="ElementFile" />
+    <ProjectItemFile Source="External\ngHtmlCompile.js" Target="Scripts\External\" Type="ElementFile" />
   </Files>
 </ProjectItem>

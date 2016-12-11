@@ -54,6 +54,9 @@
     <None Include="Images\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6f8046f3-4506-442c-b83e-215d865efc65}</SharePointProjectItemId>
     </None>
+    <None Include="_catalogs\masterpage\ResumeBuilderAdmin.master" />
+    <None Include="_catalogs\masterpage\ResumeBuilderCommon.master" />
+    <None Include="_catalogs\masterpage\ResumeBuilder.master" />
     <None Include="Pages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5656aa37-d1bd-48fc-bcbd-87db9680273f}</SharePointProjectItemId>
     </None>
@@ -63,7 +66,9 @@
     <Content Include="Content\App.min.css" />
     <Content Include="Content\Elements.xml" />
     <Content Include="Content\Print.min.css" />
-    <Content Include="Elements.xml" />
+    <Content Include="Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Features\SPEnhance.SharePoint.AboutMe\SPEnhance.SharePoint.AboutMe.Template.xml">
       <DependentUpon>SPEnhance.SharePoint.AboutMe.feature</DependentUpon>
     </Content>
@@ -102,8 +107,14 @@
     <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\CSOM.js" />
     <Content Include="Scripts\Default.js" />
+    <Content Include="Scripts\External\angular-route.min.js" />
+    <Content Include="Scripts\External\angular.min.js" />
     <Content Include="Scripts\External\jquery-1.9.1.min.js" />
     <Content Include="Scripts\External\MicrosoftAjax.js" />
+    <Content Include="Scripts\External\ngHtmlCompile.js" />
+    <Content Include="Scripts\External\sp.js" />
+    <Content Include="Scripts\External\sp.requestexecutor.js" />
+    <Content Include="Scripts\External\sp.runtime.js" />
     <Content Include="Scripts\Initialize.min.js" />
     <Content Include="Scripts\Initialize.js" />
     <Content Include="Scripts\no-cache.js" />
@@ -133,5 +144,9 @@
   <PropertyGroup>
     <PreBuildEvent>"$(ProjectDir)Minify\AjaxMinifier.exe" -CSS -CLOBBER -xml $(ProjectDir)Minify\cssFiles.xml"
 "$(ProjectDir)Minify\AjaxMinifier.exe" -JS -CLOBBER -xml $(ProjectDir)Minify\jsFiles.xml"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

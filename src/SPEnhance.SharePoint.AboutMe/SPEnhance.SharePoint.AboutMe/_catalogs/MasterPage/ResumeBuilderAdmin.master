@@ -1,0 +1,11 @@
+﻿<%@ Master Language="C#" MasterPageFile="ResumeBuilderCommon.master" %>
+
+<asp:Content ContentPlaceHolderID="PageMain" runat="server">
+    <h3>Admin Panel</h3>	
+    <div-alert-msg id="divMsg"></div-alert-msg>
+    <asp:ContentPlaceHolder ID="PageContent" runat="server"></asp:ContentPlaceHolder>
+    <footer class="row">
+        <footer-menu is-admin="true" class="row"></footer-menu>
+    </footer>
+</asp:Content>
+

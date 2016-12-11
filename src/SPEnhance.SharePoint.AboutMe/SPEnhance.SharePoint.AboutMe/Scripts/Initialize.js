@@ -18,9 +18,7 @@ var descriptionFieldName = "description";
 var urlFieldName = "url";
 var excludeListFieldsToCreate = [titleFieldName];
 
-var clientContext = new SP.ClientContext(appWebUrl);
-var webLists = clientContext.get_web().get_lists();
-var objClient = null;
+var objClient = new SPClient(appWebUrl);
 
 var listNames = {
     "lists":
@@ -57,6 +55,8 @@ var listNames = {
 		}
 	]
 };
+
+var resumeBuilderApp = angular.module('resumeBuilderApp', ['ngRoute', 'ngHtmlCompile', 'sharePointService']);
 
 function getQueryStringParameter(paramToRetrieve) {
     var returnValue = "";
