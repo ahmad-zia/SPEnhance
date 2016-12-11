@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" %>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Resume Builder</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta http-equiv="default-style" content="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="#" />
+
+        <link rel="Stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js"></script>
+        <script type="text/javascript">
+            var path = getPath();
+            $("head").append('<script type="text/javascript" src="' + path + 'Scripts/no-cache.min.js?d=' + new Date().toISOString() + '">');
+
+            function getPath() {
+                var url = document.URL.toLowerCase();
+                var path = "";
+                if (url.indexOf("/aboutme/pages/admin/list/") > 0)
+                    path = "../../../";
+                else if (url.indexOf("/aboutme/pages/admin/") > 0)
+                    path = "../../";
+                else if (url.indexOf("/aboutme/pages/") > 0)
+                    path = "../";
+                return path;
+            }
+        </script>
+	</head>
+    <body class="container" ng-app="resumeBuilderApp">
+        <!--[if lt IE 8]>
+			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+        
+        <asp:ContentPlaceHolder ID="PageMain" runat="server"></asp:ContentPlaceHolder>
+    </body>
+</html>

@@ -1,70 +1,74 @@
 ﻿var listName = decodeURIComponent(getQueryStringParameter("listName"));
 
-$(document).ready(function () {
+resumeBuilderApp.controller('NewListDataController', ['$scope', 'sharePointService', function ($scope, sharePointService) {
+    consoleLog("in NewListDataController");
+
     clearMsg();
-    objClient = new SPClient();
-    objClient.consoleLog(true);
+    
+    $scope.listName = listName;
+    $scope.formData = {};
+    $scope.hyperlink = {};
 
-    $("#spanListName").text(listName);
-    createForm(listName);
-
-    $("#save").click(function () {
+    $scope.save = function () {
+        consoleLog("in save");
 
         var objFields = [];
         var objField = {};
 
-        $("#")
-
-        $.each($("input[data='field'], textarea[data='field']"), function (i, d) {
+        angular.forEach($scope.formData, function (value, key) {
             objField = {};
-            objField.fieldName = $(d).attr("id");
-            objField.fieldValue = $(d).val();
+            objField.fieldName = key;
+            objField.fieldValue = value;
             objFields.push(objField);
+
         });
 
         var jsonListData = { "data": objFields };
-        //objClient.createOrUpdateListItem(appWebUrl, listName, 0, jsonListData, callbackSaveSuccess, callbackSaveFail);
-        objClient.createOrUpdateListItem(listName, 0, jsonListData, callbackSaveSuccess, callbackSaveFail);
+        consoleLog(jsonListData);
+        objClient.createOrUpdateListItem($scope, sharePointService, listName, 0, jsonListData, callbackSaveSuccess, callbackSaveFail);
+    }
 
-    });
-
-    $("#cancel").click(function () {
+    $scope.cancel = function () {
         document.location = "View.aspx?SPAppWebUrl=" + appWebUrl + "&listName=" + listName + "&SPHostUrl=" + hostWebUrl;
-    });
-});
+    }
+
+    $scope.createForm = function () {
+        clearMsg();
+        $scope.listForm = createForm(listName);
+    }
+
+    $scope.createForm();
+}]);
 
 function callbackSaveSuccess() {
     document.location = "View.aspx?SPAppWebUrl=" + appWebUrl + "&listName=" + listName + "&SPHostUrl=" + hostWebUrl;
 }
 
-function callbackSaveFail(sender, args) {
+function callbackSaveFail(args) {
     showMsg(args.get_message());
 }
 
 function createForm(listName) {
     var formHtml = "<div class='form-horizontal'>";
-    $.each(listNames.lists, function (i, v) {
+    angular.forEach(listNames.lists, function (v, i) {
         if (v.listName == listName) {
-            $.each(v.fields, function (j, w) {
+            angular.forEach(v.fields, function (w, j) {
                 formHtml += "<div class='form-group'>";
                 formHtml += "<label for='" + w.fieldInternalName + "' class='col-sm-2 control-label'>" + w.fieldDisplayName + "</label>";
                 formHtml += "<div class='col-sm-10'>";
 
                 if (w.fieldType == "Note") {
-                    formHtml += "<textarea width='100%' rows='5' data='field' class='form-control' id='" + w.fieldInternalName + "'/>";
+                    formHtml += "<textarea ng-model='formData."+w.fieldInternalName+"' width='100%' rows='5' data='field' class='form-control' id='" + w.fieldInternalName + "'/>";
                 }
                 else if (w.fieldType == "URL") {
                     formHtml += "<div class='form-group'>";
-                    formHtml += "<div class='col-sm-5'><label>Url: </label><input type='text' class='form-control' onchange='updateUrl(\"" + w.fieldInternalName + "\")' id='" + w.fieldInternalName + "_url' placeholder='http://www.google.com'/></div>";
-                    formHtml += "<div class='col-sm-5'><label>Title: </label><input type='text' class='form-control' onchange='updateUrl(\"" + w.fieldInternalName + "\")' id='" + w.fieldInternalName + "_description' placeholder='Google'/></div>";
-                    formHtml += "<input type='hidden' data='field' class='form-control' id='" + w.fieldInternalName + "'/>";
+                    formHtml += "<div class='col-sm-5'><label>Url: </label><input ng-model='hyperlink.url' ng-change='formData." + w.fieldInternalName + "=hyperlink.url.length > 0 ? (hyperlink.url + \", \" + hyperlink.description) : \"\"' type='text' class='form-control' id='" + w.fieldInternalName + "_url' placeholder='http://www.google.com'/></div>";
+                    formHtml += "<div class='col-sm-5'><label>Title: </label><input ng-model='hyperlink.description' ng-change='formData." + w.fieldInternalName + "=hyperlink.description.length > 0 ? (hyperlink.url + \", \" + hyperlink.description) : \"\"' type='text' class='form-control' id='" + w.fieldInternalName + "_description' placeholder='Google'/></div>";
+                    formHtml += "<input ng-model='formData." + w.fieldInternalName + "' type='hidden' data='field' class='form-control' id='" + w.fieldInternalName + "'/>";
                     formHtml += "</div>";
                 }
                 else
-                    formHtml += "<input type='text' data='field' class='form-control' id='" + w.fieldInternalName + "'/>";
-                if (w.fieldType == "URL") {
-                    
-                }
+                    formHtml += "<input ng-model='formData." + w.fieldInternalName + "' type='text' data='field' class='form-control' id='" + w.fieldInternalName + "'/>";
 
                 formHtml += "</div>";
                 formHtml += "</div>";
@@ -77,6 +81,6 @@ function createForm(listName) {
     });
     formHtml += "</div>";
 
-    $("#listForm").html(formHtml);
+    return formHtml;
 }
 

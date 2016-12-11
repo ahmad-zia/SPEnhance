@@ -1,0 +1,9 @@
+﻿<%@ Master Language="C#" MasterPageFile="ResumeBuilderCommon.master" %>
+
+<asp:Content ContentPlaceHolderID="PageMain" runat="server">
+    <div-alert-msg id="divMsg"></div-alert-msg>
+    <asp:ContentPlaceHolder ID="PageContent" runat="server"></asp:ContentPlaceHolder>
+    <footer class="row">
+        <footer-menu id="footerMenu" is-admin="false" ng-init="allListsCreated = false" ng-show="allListsCreated" class="row"></footer-menu>
+    </footer>
+</asp:Content>
