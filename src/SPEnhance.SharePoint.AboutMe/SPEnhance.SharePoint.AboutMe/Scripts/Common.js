@@ -33,9 +33,9 @@ resumeBuilderApp.directive("footerMenu", function () {
         link: function (scope, elem, attrs) {
 
             if (attrs.isAdmin == "true")
-                scope.footerMenuLinks = "<a id=\"refresh\" ng-click=\"refresh()\">Refresh</a> | <a href=\"{{viewResumeUrl}}\" id=\"viewResume\">View Resume</a> | <a href=\"{{adminHomeUrl}}\" id=\"adminHome\">Admin Home</a> | <a href=\"https://spenhance.codeplex.com/discussions\" target=\"_blank\">Technical Support</a>";
+                scope.footerMenuLinks = "<a id=\"refresh\" ng-click=\"refresh()\">Refresh</a> | <a href=\"{{viewResumeUrl}}\" id=\"viewResume\">View Resume</a> | <a href=\"{{adminHomeUrl}}\" id=\"adminHome\">Admin Home</a> | <a href=\"https://github.com/ahmad-zia/SPEnhance/blob/master/Support.md\" target=\"_blank\">Technical Support</a>";
             else
-                scope.footerMenuLinks = "<a id=\"refresh\" ng-click=\"refresh()\">Refresh</a> | <a href=\"{{adminHomeUrl}}\" id=\"adminHome\">Admin Home</a> | <a id=\"print\" ng-click=\"print()\">Print</a> | <a href=\"https://spenhance.codeplex.com/discussions\" target=\"_blank\">Technical Support</a>";
+                scope.footerMenuLinks = "<a id=\"refresh\" ng-click=\"refresh()\">Refresh</a> | <a href=\"{{adminHomeUrl}}\" id=\"adminHome\">Admin Home</a> | <a id=\"print\" ng-click=\"print()\">Print</a> | <a href=\"https://github.com/ahmad-zia/SPEnhance/blob/master/Support.md\" target=\"_blank\">Technical Support</a>";
 
             scope.viewResumeUrl = appWebUrl + "/Pages/Default.aspx?SPAppWebUrl=" + appWebUrl + "&SPHostUrl=" + hostWebUrl;
 
